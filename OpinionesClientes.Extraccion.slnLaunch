@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "API redes sociales + Worker de extracción",
+    "Projects": [
+      {
+        "Path": "src\\OpinionesClientes.SocialApi\\OpinionesClientes.SocialApi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "src\\OpinionesClientes.Worker\\OpinionesClientes.Worker.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

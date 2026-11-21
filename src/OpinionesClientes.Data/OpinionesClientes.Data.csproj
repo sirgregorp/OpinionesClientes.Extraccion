@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Capa de Datos (infraestructura): implementa los contratos de la capa de Aplicación.
+    Aquí viven los lectores de cada fuente (CSV, BD, API), la fábrica que los crea
+    y el repositorio de staging.
+  -->
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="33.0.1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpinionesClientes.Application\OpinionesClientes.Application.csproj" />
+  </ItemGroup>
+</Project>

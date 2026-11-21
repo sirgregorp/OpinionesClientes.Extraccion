@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Capa de Dominio: entidades del negocio, sin dependencias externas -->
+</Project>

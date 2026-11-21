@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "OpinionesClientes.Worker": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development",
+        "SocialApi__ApiKey": "clave-local-solo-desarrollo"
+      }
+    }
+  }
+}

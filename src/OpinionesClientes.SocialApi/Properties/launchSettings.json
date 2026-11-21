@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "OpinionesClientes.SocialApi": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5080",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SocialApi__ApiKey": "clave-local-solo-desarrollo"
+      }
+    }
+  }
+}

@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="915" viewBox="0 0 1700 915">
+<defs><marker id="ah" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#3d4852"/></marker></defs>
+<rect width="1700" height="915" fill="white"/>
+<text x="850.0" y="38" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="bold" fill="#1d2733" text-anchor="middle">Arquitectura del proceso ETL · Sistema de Análisis de Opiniones de Clientes</text>
+<text x="850.0" y="62" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="normal" fill="#5b6770" text-anchor="middle">Actividad 1: arquitectura base y proceso de extracción (E) · Worker Service .NET 8</text>
+<rect x="25" y="90" width="300" height="560" rx="14" fill="#eef4fb" stroke="#7aa3cf" stroke-width="1.5"/>
+<text x="175" y="118" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#1f4e79" text-anchor="middle">FUENTES DE DATOS</text>
+<rect x="45" y="140" width="260" height="120" rx="8" fill="#ffffff" stroke="#5b6770" stroke-width="1.5"/>
+<text x="175.0" y="160" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">Archivos CSV</text>
+<text x="175.0" y="176" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">surveys_part1.csv (encuestas)</text>
+<text x="175.0" y="192" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">clients.csv · products.csv</text>
+<text x="175.0" y="208" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">fuente_datos.csv</text>
+<text x="175.0" y="224" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">→ CsvHelper, lectura async</text>
+<path d="M45,302 A130.0,12 0 0,1 305,302 L305,408 A130.0,12 0 0,1 45,408 Z" fill="#ffffff" stroke="#5b6770" stroke-width="1.8"/>
+<path d="M45,302 A130.0,12 0 0,0 305,302" fill="none" stroke="#5b6770" stroke-width="1.8"/>
+<text x="175.0" y="328" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">Base de datos relacional</text>
+<text x="175.0" y="344" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">SQL Server · SitioWebDB</text>
+<text x="175.0" y="360" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">dbo.Resenas (reseñas web)</text>
+<text x="175.0" y="376" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">→ ADO.NET, SqlDataReader</text>
+<rect x="45" y="450" width="260" height="130" rx="8" fill="#ffffff" stroke="#5b6770" stroke-width="1.5"/>
+<text x="175.0" y="470" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">API REST redes sociales</text>
+<text x="175.0" y="486" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">OpinionesClientes.SocialApi</text>
+<text x="175.0" y="502" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">GET /api/v1/comentarios</text>
+<text x="175.0" y="518" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">paginada · requiere X-Api-Key</text>
+<text x="175.0" y="534" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">→ HttpClient, páginas de 50</text>
+<text x="175" y="620" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#5b6770" text-anchor="middle" font-style="italic">Instagram · Facebook · Twitter</text>
+<rect x="375" y="90" width="880" height="700" rx="14" fill="#f4f8ef" stroke="#7fae5a" stroke-width="2"/>
+<text x="815.0" y="118" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#38602a" text-anchor="middle">SERVICIO ETL · Worker Service .NET 8  (OpinionesClientes.Extraccion)</text>
+<rect x="393" y="135" width="844" height="95" rx="10" fill="#fbfdf9" stroke="#9bbb85" stroke-width="1.5" stroke-dasharray="6,4"/>
+<text x="407" y="157" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#38602a" text-anchor="start">Worker</text>
+<text x="463" y="157" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#5b6770" text-anchor="start" font-style="italic">presentación / arranque</text>
+<rect x="415" y="167" width="250" height="52" rx="8" fill="#e3f0d8" stroke="#5b6770" stroke-width="1.5"/>
+<text x="540.0" y="187" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">ExtractionWorker</text>
+<text x="540.0" y="203" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">BackgroundService</text>
+<rect x="685" y="167" width="250" height="52" rx="8" fill="#e3f0d8" stroke="#5b6770" stroke-width="1.5"/>
+<text x="810.0" y="187" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">Program.cs</text>
+<text x="810.0" y="203" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">inyección de dependencias</text>
+<rect x="955" y="167" width="262" height="52" rx="8" fill="#e3f0d8" stroke="#5b6770" stroke-width="1.5"/>
+<text x="1086.0" y="187" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">ILogger</text>
+<text x="1086.0" y="203" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">consola + archivo de log</text>
+<rect x="393" y="245" width="844" height="115" rx="10" fill="#fbfdf9" stroke="#9bbb85" stroke-width="1.5" stroke-dasharray="6,4"/>
+<text x="407" y="267" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#38602a" text-anchor="start">Application</text>
+<text x="503" y="267" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#5b6770" text-anchor="start" font-style="italic">contratos y orquestación</text>
+<rect x="415" y="277" width="330" height="70" rx="8" fill="#e3f0d8" stroke="#5b6770" stroke-width="1.5"/>
+<text x="580.0" y="297" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">ExtractionService</text>
+<text x="580.0" y="313" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">Task.WhenAll + SemaphoreSlim</text>
+<text x="580.0" y="329" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">Stopwatch por fuente y por lote</text>
+<rect x="765" y="277" width="452" height="70" rx="8" fill="#ffffff" stroke="#5b6770" stroke-width="1.5"/>
+<text x="991.0" y="297" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">Interfaces</text>
+<text x="991.0" y="313" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">IExtractor · IExtractorFactory</text>
+<text x="991.0" y="329" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">IStagingRepository · IExtractionService</text>
+<rect x="393" y="375" width="844" height="300" rx="10" fill="#fbfdf9" stroke="#9bbb85" stroke-width="1.5" stroke-dasharray="6,4"/>
+<text x="407" y="397" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#38602a" text-anchor="start">Data</text>
+<text x="447" y="397" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#5b6770" text-anchor="start" font-style="italic">implementaciones (patrón visto en clase)</text>
+<rect x="685" y="407" width="250" height="88" rx="8" fill="#fff3d6" stroke="#b58900" stroke-width="1.5"/>
+<text x="810.0" y="427" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">ExtractorFactory</text>
+<text x="810.0" y="443" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">crea un extractor por cada</text>
+<text x="810.0" y="459" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">fuente declarada en</text>
+<text x="810.0" y="475" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">appsettings.json</text>
+<rect x="415" y="407" width="250" height="88" rx="8" fill="#e3f0d8" stroke="#5b6770" stroke-width="1.5"/>
+<text x="540.0" y="427" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">Extractores</text>
+<text x="540.0" y="443" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">CsvExtractor&lt;T&gt;</text>
+<text x="540.0" y="459" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">DatabaseExtractor&lt;T&gt;</text>
+<text x="540.0" y="475" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">ApiExtractor&lt;T&gt;</text>
+<rect x="955" y="407" width="262" height="88" rx="8" fill="#fff3d6" stroke="#b58900" stroke-width="1.5"/>
+<text x="1086.0" y="427" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">FileFactory</text>
+<text x="1086.0" y="443" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">IFileReaderRepository&lt;TClass&gt;</text>
+<text x="1086.0" y="459" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">IDatabaseReaderRepository&lt;TClass&gt;</text>
+<text x="1086.0" y="475" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">IApiReaderRepository&lt;TClass&gt;</text>
+<rect x="415" y="510" width="250" height="88" rx="8" fill="#ffffff" stroke="#5b6770" stroke-width="1.5"/>
+<text x="540.0" y="530" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">ExtractorBase&lt;T&gt;</text>
+<text x="540.0" y="546" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">Template Method:</text>
+<text x="540.0" y="562" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">leer → validar clave →</text>
+<text x="540.0" y="578" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">guardar → registrar</text>
+<rect x="685" y="520" width="532" height="88" rx="8" fill="#ffffff" stroke="#5b6770" stroke-width="1.5"/>
+<text x="951.0" y="540" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">Repositories (lectores)</text>
+<text x="951.0" y="556" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">CsvFileReaderRepository (CsvHelper) · JsonFileReaderRepository</text>
+<text x="951.0" y="572" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">SqlDatabaseReaderRepository (ADO.NET, SqlDataReader)</text>
+<text x="951.0" y="588" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">ApiReaderRepository (IHttpClientFactory + RetryHandler + ApiKeyHandler)</text>
+<rect x="415" y="615" width="802" height="46" rx="8" fill="#ffffff" stroke="#5b3a7a" stroke-width="1.5"/>
+<text x="816.0" y="635" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">Staging: SqlStagingRepository (SqlBulkCopy en transacción) · FileStagingRepository (JSON temporales)</text>
+<rect x="393" y="690" width="844" height="85" rx="10" fill="#fbfdf9" stroke="#9bbb85" stroke-width="1.5" stroke-dasharray="6,4"/>
+<text x="407" y="712" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#38602a" text-anchor="start">Domain</text>
+<text x="463" y="712" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#5b6770" text-anchor="start" font-style="italic">entidades, sin dependencias</text>
+<rect x="415" y="722" width="802" height="40" rx="8" fill="#ffffff" stroke="#5b6770" stroke-width="1.5"/>
+<text x="816.0" y="742" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">Encuesta · ResenaWeb · ComentarioSocial · Cliente · Producto · FuenteDatos</text>
+<rect x="375" y="815" width="430" height="80" rx="8" fill="#fdf6e3" stroke="#b58900" stroke-width="1.5"/>
+<text x="590.0" y="835" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">appsettings.json</text>
+<text x="590.0" y="851" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">fuentes, rutas, consultas, conexiones (Windows Auth)</text>
+<text x="590.0" y="867" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">API key → User Secrets / variables de entorno</text>
+<rect x="825" y="815" width="430" height="80" rx="8" fill="#fdf6e3" stroke="#b58900" stroke-width="1.5"/>
+<text x="1040.0" y="835" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">Registro de eventos y errores</text>
+<text x="1040.0" y="851" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">Logs/extraccion_AAAAMMDD.log</text>
+<text x="1040.0" y="867" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">tabla stg.LogExtraccion (una fila por fuente)</text>
+<polyline points="590,815 590,792" fill="none" stroke="#3d4852" stroke-width="1.8" marker-end="url(#ah)" stroke-dasharray="5,4"/>
+<polyline points="1040,792 1040,815" fill="none" stroke="#3d4852" stroke-width="1.8" marker-end="url(#ah)" stroke-dasharray="5,4"/>
+<rect x="1300" y="90" width="375" height="805" rx="14" fill="#f6f0fa" stroke="#a785c4" stroke-width="1.5"/>
+<text x="1487" y="118" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#5b3a7a" text-anchor="middle">ALMACENAMIENTO Y ANÁLISIS</text>
+<path d="M1325,152 A162.5,12 0 0,1 1650,152 L1650,303 A162.5,12 0 0,1 1325,303 Z" fill="#ffffff" stroke="#5b3a7a" stroke-width="1.8"/>
+<path d="M1325,152 A162.5,12 0 0,0 1650,152" fill="none" stroke="#5b3a7a" stroke-width="1.8"/>
+<text x="1487.5" y="178" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">Staging · OpinionesStagingDB</text>
+<text x="1487.5" y="194" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">stg.Encuestas · stg.ResenasWeb</text>
+<text x="1487.5" y="210" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">stg.ComentariosSociales</text>
+<text x="1487.5" y="226" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">stg.Clientes · stg.Productos</text>
+<text x="1487.5" y="242" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">stg.FuentesDatos · stg.LogExtraccion</text>
+<text x="1500" y="348" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#5b3a7a" text-anchor="start">alcance de esta actividad</text>
+<rect x="1325" y="370" width="325" height="85" rx="8" fill="#ffffff" stroke="#8a6aa8" stroke-width="1.5" stroke-dasharray="6,4"/>
+<text x="1487.5" y="390" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">Transformación y Carga</text>
+<text x="1487.5" y="406" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">limpieza, normalización, sentimiento,</text>
+<text x="1487.5" y="422" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">integridad referencial (siguiente etapa)</text>
+<path d="M1325,502 A162.5,12 0 0,1 1650,502 L1650,628 A162.5,12 0 0,1 1325,628 Z" fill="#ffffff" stroke="#8a6aa8" stroke-width="1.8"/>
+<path d="M1325,502 A162.5,12 0 0,0 1650,502" fill="none" stroke="#8a6aa8" stroke-width="1.8"/>
+<text x="1487.5" y="528" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">Base de datos analítica</text>
+<text x="1487.5" y="544" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">OpinionesClientesDB (transaccional)</text>
+<text x="1487.5" y="560" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">OpinionesDW: Fact_Opiniones +</text>
+<text x="1487.5" y="576" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">Dim_Cliente, Dim_Producto, Dim_Fuente,</text>
+<text x="1487.5" y="592" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">Dim_Clasificacion, Dim_Tiempo</text>
+<rect x="1325" y="680" width="325" height="95" rx="8" fill="#ffffff" stroke="#8a6aa8" stroke-width="1.5" stroke-dasharray="6,4"/>
+<text x="1487.5" y="700" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#1d2733" text-anchor="middle">Módulo de visualización</text>
+<text x="1487.5" y="716" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">Dashboard (Power BI o</text>
+<text x="1487.5" y="732" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">ASP.NET Core + Chart.js)</text>
+<text x="1487.5" y="748" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#1d2733" text-anchor="middle">KPIs de satisfacción por canal</text>
+<text x="1487" y="815" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#5b6770" text-anchor="middle" font-style="italic">Etapas siguientes del proyecto</text>
+<text x="1487" y="833" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#5b6770" text-anchor="middle" font-style="italic">(líneas punteadas)</text>
+<polyline points="1487,322 1487,368" fill="none" stroke="#3d4852" stroke-width="1.8" marker-end="url(#ah)" stroke-dasharray="6,4"/>
+<polyline points="1487,455 1487,488" fill="none" stroke="#3d4852" stroke-width="1.8" marker-end="url(#ah)" stroke-dasharray="6,4"/>
+<polyline points="1487,640 1487,678" fill="none" stroke="#3d4852" stroke-width="1.8" marker-end="url(#ah)" stroke-dasharray="6,4"/>
+<polyline points="305,200 345,200 345,431 415,431" fill="none" stroke="#3d4852" stroke-width="1.8" marker-end="url(#ah)"/>
+<polyline points="305,355 355,355 355,451 415,451" fill="none" stroke="#3d4852" stroke-width="1.8" marker-end="url(#ah)"/>
+<polyline points="305,515 345,515 345,471 415,471" fill="none" stroke="#3d4852" stroke-width="1.8" marker-end="url(#ah)"/>
+<polyline points="1217,638 1290,638 1290,240 1325,240" fill="none" stroke="#5b3a7a" stroke-width="2.6" marker-end="url(#ah)"/>
+<text x="1285" y="665" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#5b3a7a" text-anchor="end">SqlBulkCopy</text>
+</svg>

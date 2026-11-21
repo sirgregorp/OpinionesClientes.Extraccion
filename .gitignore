@@ -1,0 +1,13 @@
+## Visual Studio / .NET
+.vs/
+bin/
+obj/
+*.user
+*.suo
+## Salidas del proceso de extracción
+**/Staging/
+**/Logs/
+## Secretos locales (nunca se suben a GitHub)
+appsettings.*.local.json
+*.secrets.json
+evidencias/

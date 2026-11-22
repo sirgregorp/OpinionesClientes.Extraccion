@@ -2,9 +2,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using OpinionesClientes.Application.Interfaces;
+using OpinionesClientes.Application.Options;
 using OpinionesClientes.Data.Factory;
 using OpinionesClientes.Data.Http;
 using OpinionesClientes.Data.Interfaces;
+using OpinionesClientes.Data.Loaders;
 using OpinionesClientes.Data.Repositories;
 
 namespace OpinionesClientes.Data;
@@ -40,6 +42,15 @@ public static class DependencyInjection
             services.AddSingleton<IStagingRepository, FileStagingRepository>();
         else
             services.AddSingleton<IStagingRepository, SqlStagingRepository>();
+
+        // Carga de dimensiones del Data Warehouse: un cargador por dimensión
+        services.Configure<CargaDimensionesOptions>(configuracion.GetSection(CargaDimensionesOptions.Seccion));
+        services.AddSingleton<IDataWarehouseRepository, SqlDataWarehouseRepository>();
+        services.AddSingleton<IDimensionLoader, TiempoDimensionLoader>();
+        services.AddSingleton<IDimensionLoader, ClienteDimensionLoader>();
+        services.AddSingleton<IDimensionLoader, ProductoDimensionLoader>();
+        services.AddSingleton<IDimensionLoader, FuenteDimensionLoader>();
+        services.AddSingleton<IDimensionLoader, ClasificacionDimensionLoader>();
 
         return services;
     }

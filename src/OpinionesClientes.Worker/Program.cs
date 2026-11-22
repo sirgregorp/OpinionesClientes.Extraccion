@@ -21,7 +21,8 @@ builder.Logging.AddProvider(new ArchivoLoggerProvider(Path.Combine(AppContext.Ba
 // ---- Inyección de dependencias por capas ----
 builder.Services.Configure<ExtraccionOptions>(builder.Configuration.GetSection(ExtraccionOptions.Seccion));
 builder.Services.AddDataLayer(builder.Configuration);                      // Capa de Datos
-builder.Services.AddSingleton<IExtractionService, ExtractionService>();    // Capa de Aplicación
+builder.Services.AddSingleton<IExtractionService, ExtractionService>();    // Capa de Aplicación: extracción
+builder.Services.AddSingleton<IDimensionLoadService, DimensionLoadService>(); // Capa de Aplicación: dimensiones del DW
 builder.Services.AddHostedService<ExtractionWorker>();                     // Worker
 
 var host = builder.Build();

@@ -1,10 +1,10 @@
 ﻿<#
   Ejecución completa de la demostración (Windows):
-    1. Crea SitioWebDB (origen) y OpinionesStagingDB (staging) con sqlcmd
+    1. Crea SitioWebDB (origen), OpinionesStagingDB (staging) y OpinionesDW (si no existe) con sqlcmd
     2. Compila la solución
-    3. Inicia la API de redes sociales y ejecuta el Worker de extracción
+    3. Inicia la API de redes sociales y ejecuta el Worker (extracción + carga de dimensiones)
        (la API key de desarrollo llega por variable de entorno desde launchSettings.json)
-    4. Muestra las consultas de validación del staging
+    4. Muestra las consultas de validación del staging y del Data Warehouse
   Todo lo que sale en pantalla queda guardado en evidencias\ejecucion_AAAAMMDD_HHMMSS.txt
 
   Uso: clic derecho > Ejecutar con PowerShell, o doble clic en scripts\demo-completa.bat
@@ -26,7 +26,7 @@ function Paso($texto) { Write-Host ""; Write-Host "=== $texto ===" -ForegroundCo
 $api = $null
 try {
     Paso "1. Bases de datos en $Servidor"
-    foreach ($script in "00_CrearSitioWebDB.sql", "01_CrearStagingDB.sql") {
+    foreach ($script in "00_CrearSitioWebDB.sql", "01_CrearStagingDB.sql", "03_CrearDataWarehouse.sql") {
         Write-Host "Ejecutando database\$script"
         sqlcmd -S $Servidor -E -b -f 65001 -i "$raiz\database\$script"
         if ($LASTEXITCODE -ne 0) { throw "Falló $script" }
@@ -45,11 +45,14 @@ try {
     Write-Host "API lista. Prueba sin API key:"
     try { Invoke-RestMethod http://localhost:5080/api/v1/comentarios | Out-Null } catch { Write-Host "  -> $($_.Exception.Message)" -ForegroundColor Yellow }
 
-    Paso "4. Worker Service de extracción"
+    Paso "4. Worker Service: extracción y carga de dimensiones"
     dotnet run --no-build --project "$raiz\src\OpinionesClientes.Worker"
 
     Paso "5. Validación en OpinionesStagingDB"
     sqlcmd -S $Servidor -E -f 65001 -W -s " | " -Q "SET NOCOUNT ON; SELECT Fuente, TipoFuente, TablaStaging, RegistrosExtraidos AS Extraidos, RegistrosGuardados AS Guardados, DuracionMs, Estado FROM OpinionesStagingDB.stg.vw_UltimoLote ORDER BY TipoFuente, Fuente; SELECT (SELECT COUNT(*) FROM SitioWebDB.dbo.Resenas) AS ResenasOrigen, (SELECT COUNT(*) FROM OpinionesStagingDB.stg.ResenasWeb) AS ResenasStaging, (SELECT COUNT(*) FROM OpinionesStagingDB.stg.ComentariosSociales) AS ComentariosStaging, (SELECT COUNT(*) FROM OpinionesStagingDB.stg.Encuestas) AS EncuestasStaging;"
+
+    Paso "6. Validación en OpinionesDW"
+    sqlcmd -S $Servidor -E -f 65001 -W -s " | " -Q "SET NOCOUNT ON; SELECT Dimension, RegistrosLeidos AS Leidos, RegistrosDescartados AS Descartados, Insertados, Actualizados, TotalEnDimension AS Total, DuracionMs, Estado FROM OpinionesDW.dbo.vw_UltimaCargaDimensiones ORDER BY Dimension;"
 }
 catch {
     Write-Host "ERROR: $($_.Exception.Message)" -ForegroundColor Red

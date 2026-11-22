@@ -9,6 +9,9 @@ public class ExtraccionOptions
 {
     public const string Seccion = "Extraccion";
 
+    /// <summary>Si es false se salta la extracción y se trabaja con lo que ya hay en staging.</summary>
+    public bool Habilitada { get; set; } = true;
+
     /// <summary>Cantidad máxima de fuentes que se extraen en paralelo.</summary>
     public int MaxParalelismo { get; set; } = 4;
 

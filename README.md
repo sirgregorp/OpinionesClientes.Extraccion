@@ -24,7 +24,8 @@ OpinionesClientes.Extraccion.sln
 │   ├── 01_CrearStagingDB.sql             → OpinionesStagingDB: esquema stg + bitácora
 │   ├── 02_ConsultasValidacionStaging.sql → consultas para validar la extracción
 │   ├── 03_CrearDataWarehouse.sql         → OpinionesDW (modelo estrella) + bitácora dbo.LogCargaDimensiones
-│   └── 04_ConsultasValidacionDW.sql      → consultas para validar las dimensiones cargadas
+│   ├── 04_ConsultasValidacionDW.sql      → consultas para validar las dimensiones cargadas
+│   └── 05_PerfilamientoDatosFuente.sql   → exploración y perfilamiento de staging (Módulo 6 del curso 20767A)
 ├── scripts/
 │   ├── configurar-secretos.ps1           → guarda la API key en User Secrets
 │   └── ejecutar-extraccion.ps1           → inicia la API y ejecuta el Worker
@@ -88,6 +89,9 @@ Solo se agrega un bloque en `appsettings.json`. Ejemplo:
 `ExtractorFactory` crea el extractor adecuado según `Tipo` (`Csv`, `BaseDatos` o `Api`) y `Entidad`. No se modifica el código del orquestador.
 
 ## Carga de dimensiones
+
+Antes de diseñar la carga se perfilaron los datos de staging con `database/05_PerfilamientoDatosFuente.sql` (las mismas solicitudes de la tarea Data Profiling de SSIS, escritas en T-SQL: estadísticas, nulos, largos, distribución de valores, llave candidata e inclusión de valores).
+
 
 | Dimensión | Origen en staging | Reglas principales | Llave de negocio |
 |---|---|---|---|
